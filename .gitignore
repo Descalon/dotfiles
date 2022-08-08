@@ -1,0 +1,8 @@
+fonts/
+testResults.xml
+coverage.xml
+test-results/
+
+config/*
+!config/*.template*
+*.bak

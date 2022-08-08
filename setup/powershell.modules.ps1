@@ -1,0 +1,9 @@
+@(
+    "posh-git",
+    "posh-sshell",
+    "posh-with",
+    "PSReadline",
+    "PSScriptAnalyzer",
+    "ZLocation",
+    "Get-ChildItemColor"
+)
