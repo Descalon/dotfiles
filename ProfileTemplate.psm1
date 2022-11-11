@@ -1,7 +1,6 @@
 Import-Module Terminal-Icons
 Import-Module -Name posh-git
 Import-Module -Name posh-sshell
-Import-Module -Name ZLocation
 Import-Module "$PSScriptRoot/PSExtensions.psm1"
 
 $script:builtinPath = "~/AppData/Local/Programs/oh-my-posh/themes"
