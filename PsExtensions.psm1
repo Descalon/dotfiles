@@ -65,6 +65,17 @@ Function New-GitignoreFile {
     }
 }
 
+Function Set-LocationToGitRoot {
+    [CmdletBinding(SupportsShouldProcess)]
+    Param()
+
+    $gitRoot = Get-GitDirectory | Split-Path
+
+    if ($PSCmdlet.ShouldProcess("Current location", "Setting location to $gitRoot")){
+        Set-Location $gitRoot
+    }
+}
+
 Function Update-LocalSolution {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param (
@@ -306,6 +317,7 @@ Set-Alias -Name su          -Value Start-ElevatedSession
 Set-Alias -Name uem         -Value Update-ExtensionsModule
 Set-Alias -name reload      -Value Update-ExtensionsModule
 Set-Alias -Name env         -Value Set-EnvironmentVariable
+Set-Alias -Name gr          -Value Set-LocationToGitRoot
 
 Remove-Alias -Name sl -Force -ErrorAction SilentlyContinue
 Set-Alias -Name sl -Value Convert-ToCleanLocation -Force
