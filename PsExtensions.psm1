@@ -306,6 +306,20 @@ Function Invoke-OhMyPosh {
     oh-my-posh init pwsh --config $Path | Invoke-Expression
 }
 
+Function Start-GoogleQuery {
+    [CmdletBinding(
+        SupportsShouldProcess,
+        ConfirmImpact = 'Low'
+    )]
+    Param(
+        [Parameter(Mandatory, Position=0)]
+        [String] $Query
+    )
+    if ($PSCmdlet.ShouldProcess($Query, "Searching google for query")){
+        Start-Process "https://google.com/search?q=$Query"
+    }
+}
+
 
 Set-Alias -Name gig         -Value New-GitignoreFile
 Set-Alias -Name lgi         -Value Get-GitignoreType
@@ -318,6 +332,9 @@ Set-Alias -Name uem         -Value Update-ExtensionsModule
 Set-Alias -name reload      -Value Update-ExtensionsModule
 Set-Alias -Name env         -Value Set-EnvironmentVariable
 Set-Alias -Name gr          -Value Set-LocationToGitRoot
+Set-Alias -Name q?          -Value Start-GoogleQuery
+Set-Alias -Name google      -Value Start-GoogleQuery
+
 
 Remove-Alias -Name sl -Force -ErrorAction SilentlyContinue
 Set-Alias -Name sl -Value Convert-ToCleanLocation -Force
