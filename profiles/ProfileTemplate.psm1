@@ -3,8 +3,11 @@ Import-Module -Name posh-git
 Import-Module -Name posh-sshell
 Import-Module "$PSScriptRoot/PSExtensions.psm1"
 
+$root = Split-Path $PSScriptRoot
+
 $script:builtinPath = "~/AppData/Local/Programs/oh-my-posh/themes"
-$script:localPath = "$PSScriptRoot/themes"
+$script:localPath = "$root/themes"
+
 Function Register-DotnetArgumentCompleter {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', 'c')]
     [CmdletBinding()]

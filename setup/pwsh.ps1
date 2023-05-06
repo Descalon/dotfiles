@@ -6,7 +6,6 @@
 Param(
     [switch]$ContintueOnNonCoreEditions
 )
-$root = Split-Path $PSScriptRoot
 
 if (-not $ContintueOnNonCoreEditions -and $PSVersionTable.PSEdition -ne 'Core') {
     $query = "This script is built for the Core PSEdition. "
@@ -46,15 +45,6 @@ If ($PSCmdlet.ShouldProcess("choco.packages.config", "Install software")) {
     & choco install $path -y
 }
 
-if ($PSCmdlet.ShouldProcess("Windows Terminal Template", "Create settings file from target")) {
-    Write-Verbose "Generating settings file for Windows Terminal"
-    $templatePath = Join-Path -Path $root -ChildPath "config/winterm.template.json"
-    $outputPath = Join-Path -Path $root -ChildPath "config/winterm.json"
-    $escapedRoot = $root -replace '\\', '/'
-
-    (Get-Content $templatePath) -replace "${PROFILE_PATH}", $escapedRoot > $outputPath
-}
-
 $repo = Get-PSRepository -Name PSGallery
 if ($repo.InstallationPolicy -eq 'Untrusted' -and $PSCmdlet.ShouldProcess("PSGallery", "Setting Installation Policy to Trusted")) {
     Write-Verbose "Setting PSGallery to Trusted"
@@ -73,8 +63,9 @@ if ($wingetInstalled) {
         Write-Verbose "Installing Windows Package Manager packages"
         Write-Debug "Following packages will be installed"
         $modules | Write-Debug
+        New-Item -Path "c:\temp\" -ItemType Directory -Confirm:$ConfirmPreference
         $modules | ForEach-Object {
-            & winget install $_
+            & winget install $_ --silent --log C:\temp\winget.log
         }
     }
 }

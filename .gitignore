@@ -6,3 +6,5 @@ test-results/
 config/*
 !config/*.template*
 *.bak
+
+test.ps1
