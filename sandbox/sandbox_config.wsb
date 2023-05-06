@@ -1,0 +1,19 @@
+<Configuration>
+  <VGpu>Disable</VGpu>
+  <Networking>Enable</Networking>
+  <MappedFolders>
+    <MappedFolder>
+      <HostFolder>C:\Users\nagla\lib\psprofile</HostFolder>
+      <SandboxFolder>C:\psprofile</SandboxFolder>
+      <ReadOnly>true</ReadOnly>
+    </MappedFolder>
+    <MappedFolder>
+      <HostFolder>C:\Users\nagla\lib\psprofile\sandbox</HostFolder>
+      <SandboxFolder>C:\config\</SandboxFolder>
+      <ReadOnly>true</ReadOnly>
+    </MappedFolder>
+  </MappedFolders>
+  <LogonCommand>
+    <Command>C:\config\startup.cmd c:\config\bootstrap_sandbox.ps1</Command>
+  </LogonCommand>
+</Configuration>
