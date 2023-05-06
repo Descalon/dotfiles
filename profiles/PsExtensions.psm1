@@ -320,6 +320,22 @@ Function Start-GoogleQuery {
     }
 }
 
+Function Get-EdgeSecret {
+    [CmdletBinding()]
+    [OutputType([HashTable])]
+    Param(
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [Microsoft.PowerShell.SecretManagement.SecretInformation]$Info
+    )
+    Process{
+        $plainTextPwd = Get-Secret $Info -AsPlainText
+        return @{
+            $Name = $Info.Metadata.UserName
+            $plaintext = $plainTextPwd
+        }
+    }
+}
+
 
 Set-Alias -Name gig         -Value New-GitignoreFile
 Set-Alias -Name lgi         -Value Get-GitignoreType

@@ -5,5 +5,6 @@
     "PSReadline",
     "PSScriptAnalyzer",
     "ZLocation",
-    "Get-ChildItemColor"
+    "Get-ChildItemColor",
+    "Terminal-Icons"
 )
