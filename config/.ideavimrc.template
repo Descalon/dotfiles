@@ -1,0 +1,54 @@
+let mapleader = " "
+
+set ideajoin
+set NERDTree
+
+"" plugins
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-surround'
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
+
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+set scrolloff=5
+set incsearch
+set number relativenumber
+set scrolloff=5
+set incsearch
+
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+sethandler <c-t> a:vim
+
+nnoremap \e :e ~\\.ideavimrc<CR>
+map \r <Action>(IdeaVim.ReloadVimRc.reload)
+map \t <Action>(ActivateTerminalToolWindow)
+
+map <TAB> <Action>(NextTab)
+map <s-TAB> <Action>(PreviousTab)
+
+map <leader>f <Plug>(easymotion-s)
+map <leader>e <Plug>(easymotion-f)
+map <C-t> :NERDTree<CR>
+
+map <leader><CR> <Action>(ShowIntentionActions)
+map <F2> <Action>(RenameElement)
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>B <Action>(CompileDirty)
+map <leader>r <Action>(Run)
+map <leader>d <Action>(Debug)
+map <leader>R <Action>(ChooseRunConfiguration)
+map <leader>W <Action>(CloseEditor)
+map <leader>w <Action>(CloseAllEditorsButActive)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>p <Action>(QuickJavaDoc)
+
+map gj <Action>(Back)
+map gk <Action>(Forward)
+map gi <Action>(GotoImplementation)
+map gn <Action>(GotoClass)
+map gN <Action>(GotoFile)
+map gu <Action>(FindUsages)
