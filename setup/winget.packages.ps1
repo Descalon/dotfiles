@@ -1,9 +1,0 @@
-@(
-    "JanDeDobbeleer.OhMyPosh"
-    "Microsoft.WindowsTerminal"
-    "Microsoft.VisualStudioCode"
-    "Git.Git"
-    "Microsoft.DotNet.SDK.7"
-    "Microsoft.WindowsTerminal"
-    "Microsoft.PowerToys"
-)

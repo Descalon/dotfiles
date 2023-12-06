@@ -1,0 +1,98 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: Microsoft.Windows.Developer/DeveloperMode
+      directives:
+        description: Enable Developer Mode
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wingetpwsh
+      directives:
+        description: Install PowerShell
+        allowPrerelease: true
+      settings:
+        id: Microsoft.PowerShell
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wingetChoco
+      directives:
+        description: Install Chocolatey
+        allowPrerelease: true
+      settings:
+        id: Chocolatey.Chocolatey
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wingetOhMyPosh
+      directives:
+        description: Install OhMyPosh
+      settings:
+        id: JanDeDobbeleer.OhMyPosh
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wingetVSCode
+      directives:
+        description: Install VisualStudio Code
+      settings:
+        id: Microsoft.VisualStudioCode
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wingetGit
+      directives:
+        description: Install Git
+      settings:
+        id: Git.Git
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wingetDotnet
+      directives:
+        description: Install dotnet sdk
+      settings:
+        id: Microsoft.DotNet.SDK.8
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wingetPowerToys
+      directives:
+        description: Install PowerToys
+      settings:
+        id: Microsoft.PowerToys
+        source: winget
+    - resource: PowerShellModule/PSModuleResource
+      id: psmposhgit
+      directives:
+        description: Install psmodule posh-git
+      settings:
+        module_name: posh-git
+    - resource: PowerShellModule/PSModuleResource
+      id: psmposhwith
+      directives:
+        description: Install psmodule posh-with
+      settings:
+        module_name: posh-with
+    - resource: PowerShellModule/PSModuleResource
+      id: psmpsca
+      directives:
+        description: Install psmodule PSScriptAnalyzer
+      settings:
+        module_name: PSScriptAnalyzer
+    - resource: PowerShellModule/PSModuleResource
+      id: psmz
+      directives:
+        description: Install psmodule ZLocation
+      settings:
+        module_name: ZLocation
+    - resource: PowerShellModule/PSModuleResource
+      id: psmchilditemcolour
+      directives:
+        description: Install psmodule Get-ChildItemColor
+      settings:
+        module_name: Get-ChildItemColor
+    - resource: PowerShellModule/PSModuleResource
+      id: psmterminalicons
+      directives:
+        description: Install psmodule Terminal-Icons
+      settings:
+        module_name: Terminal-Icons
+  configurationVersion: 0.2.0
+

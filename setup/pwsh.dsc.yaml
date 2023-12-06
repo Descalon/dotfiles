@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  configurationVersion: 0.2.0
+  resources:
+    - resource: PowerShellModule/PSModuleResource
+      id: psmposhgit
+      directives:
+        description: Install psmodule posh-git
+      settings:
+        module_name: posh-git
+    - resource: PowerShellModule/PSModuleResource
+      id: psmposhwith
+      directives:
+        description: Install psmodule posh-with
+      settings:
+        module_name: posh-with
+    - resource: PowerShellModule/PSModuleResource
+      id: psmpsca
+      directives:
+        description: Install psmodule PSScriptAnalyzer
+      settings:
+        module_name: PSScriptAnalyzer
+    - resource: PowerShellModule/PSModuleResource
+      id: psmz
+      directives:
+        description: Install psmodule ZLocation
+      settings:
+        module_name: ZLocation
+    - resource: PowerShellModule/PSModuleResource
+      id: psmchilditemcolour
+      directives:
+        description: Install psmodule Get-ChildItemColor
+      settings:
+        module_name: Get-ChildItemColor
+    - resource: PowerShellModule/PSModuleResource
+      id: psmterminalicons
+      directives:
+        description: Install psmodule Terminal-Icons
+      settings:
+        module_name: Terminal-Icons
+
