@@ -1,0 +1,265 @@
+{
+
+  //editor
+  "editor.minimap.enabled": false,
+  "editor.suggestSelection": "first",
+  "editor.fontFamily": "Cascadia Code",
+  "editor.fontLigatures": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "editor.cursorSurroundingLines": 8,
+  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+
+  //omniSharp
+  "omnisharp.path": "latest",
+
+  //FSharp
+  "FSharp.useSdkScripts": true,
+  "FSharp.inlayHints.typeAnnotations": false,
+  "FSharp.verboseLogging": true,
+  "FSharp.showExplorerOnStartup": false,
+
+  //git
+  "git.confirmSync": false,
+  "git.openRepositoryInParentFolders": "never",
+
+  //explore
+  "explorer.confirmDragAndDrop": false,
+
+  //workbench
+  "workbench.colorTheme": "Nord",
+
+  //powershell
+  "powershell.integratedConsole.suppressStartupBanner": true,
+
+  //redhat
+  "redhat.telemetry.enabled": false,
+
+  //language specific
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "markdown-mermaid.lightModeTheme": "forest",
+  "markdown-mermaid.darkModeTheme": "neutral",
+  
+  "powershell.integratedConsole.startInBackground": true,
+
+  //terminal
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.fontFamily": "JetbrainsMono NFP",
+  //"terminal.integrated.font
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "ByPass",
+        "-NoProfile",
+        "-NoLogo",
+        "-NoExit",
+        "-File",
+        "c:/Users/glasn00/lib/psprofile/profiles/terminalProfile.ps1"
+      ]
+    }
+  },
+  //nerdTree
+  "nerdtree.alwaysShowSidebar": true,
+  "nerdtree.hideSidebarWhenOpenFile": false,
+  //vim
+  "vim.useSystemClipboard": true,
+  "vim.easymotion": true,
+  "vim.surround": true,
+  "vim.highlightedyank.enable": true,
+  "vim.leader": " ",
+  "vim.smartRelativeLine": true,
+  "vim.sneak": true,
+  "vim.sneakReplacesF": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vim.enableNeovim": true,
+  "vim.camelCaseMotion.enable": true,
+  "vim.handleKeys": {
+    "<C-d>": true,
+    "<C-s>": false,
+    "<C-z>": false,
+    "<C-n>": false,
+    "<C-p>": false,
+    "<C-h>": true,
+    "<C-j>": true,
+    "<C-k>": true,
+    "<C-l>": true
+  },
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["g", "B"],
+      "commands": ["editor.action.changeAll"],
+      "silent": "false"
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["editor.action.insertCursorAtEndOfEachLineSelected"],
+      "silent": "false"
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.navigateLeft"]
+    },
+    {
+      "before": ["<C-j>"],
+      "commands": ["workbench.action.navigateDown"]
+    },
+    {
+      "before": ["<C-k>"],
+      "commands": ["workbench.action.navigateUp"]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.navigateRight"]
+    },
+    {
+      "before": ["<TAB>"],
+      "commands": ["workbench.action.nextEditorInGroup"],
+      "silent": "true"
+    },
+    {
+      "before": ["<S-TAB>"],
+      "commands": ["workbench.action.previousEditorInGroup"],
+      "silent": "true"
+    },
+    {
+      "before": [" ", "x"],
+      "commands": ["workbench.action.closeOtherEditors"],
+      "silent": "true"
+    },
+    {
+      "before": ["\\", "e"],
+      "commands": ["workbench.action.openSettingsJson"],
+      "silent": "true"
+    },
+    {
+      "before": ["\\", "n"],
+      "commands": ["workbench.action.files.newUntitledFile"],
+      "silent": "true"
+    },
+    {
+      "before": ["\\", "r"],
+      "commands": ["workbench.action.reloadWindow"],
+      "silent": "true"
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["workbench.action.navigateBack"],
+      "silent": "true"
+    },
+    {
+      "before": ["g", "l"],
+      "commands": ["workbench.action.navigateforward"],
+      "silent": "true"
+    },
+    {
+      "before": [" ", "s"],
+      "commands": ["fsi.SendFile"],
+      "silent": "true",
+      "when": "editorFocus && !findWidgetVisible && editorLangId == 'fsharp'"
+    },
+    {
+      "before": [" ", "f"],
+      "commands": ["editor.action.formatDocument"],
+      "silent": "true",
+      "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+      "before": [" ", "X"],
+      "commands": ["workbench.action.closeActiveEditor"],
+      "silent": "true"
+    },
+    {
+      "before": [" ", "e"],
+      "commands": ["workbench.files.action.focusFilesExplorer"],
+      "when": "!filesExplorerFocus",
+      "silent": true
+    },
+    {
+      "before": [" ", "t"],
+      "commands": ["workbench.action.terminal.focus"],
+      "when": "terminalEditorHasBeenCreated",
+      "silent": true
+    },
+    {
+      "before": [" ", "t"],
+      "commands": ["workbench.action.createTerminalEditorSide"],
+      "when": "!terminalEditorHasBeenCreated",
+      "silent": true
+    },
+    {
+      "before": [" ", " ", "t", "l"],
+      "commands": ["testing.reRunLastRun"],
+      "silent": true
+    },
+    {
+      "before": [" ", " ", "t", "d", "l"],
+      "commands": ["testing.debugLastRun"],
+      "silent": true
+    },
+    {
+      "before": [" ", " ", "t", "c"],
+      "commands": ["testing.runAtCursor"],
+      "silent": true
+    },
+    {
+      "before": [" ", " ", "t", "C"],
+      "commands": ["testing.runCurrentFile"],
+      "silent": true
+    },
+    {
+      "before": [" ", " ", "t", "d", "c"],
+      "commands": ["testing.debugAtCursor"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "l", "r"],
+      "commands": ["editor.action.rename"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.save"],
+      "silent": true
+    },
+    {
+      "before": ["g", "n"],
+      "commands": ["workbench.action.quickOpen"],
+      "silent": true
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showDefinitionPreviewHover"],
+      "silent": true
+    }
+  ],
+  "editor.renderWhitespace": "none",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.renderControlCharacters": false,
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "powershell.developer.featureFlags": ["PSReadLine"]
+}
