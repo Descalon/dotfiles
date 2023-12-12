@@ -1,7 +1,8 @@
 Import-Module "$PSScriptRoot/ProfileTemplate.psm1"
-Set-ViMode
+Import-Module "$PSScriptRoot/PsExtensions.psm1"
+Import-PSReadlineVimConfiguration
+. "$PSScriptRoot/vimKeyBindings.ps1"
 
 Set-Profile princess
 
-$shellIntegrationPath = "c:\Users\nagla\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\contrib\terminal\browser\media\shellIntegration.ps1"
-if ($env:TERM_PROGRAM -eq "vscode") { . $shellintegrationPath }
+if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
