@@ -306,6 +306,61 @@ Function Invoke-OhMyPosh {
     oh-my-posh init pwsh --config $Path | Invoke-Expression
 }
 
+Function Resolve-ProjectRoot {
+    [CmdletBinding()]
+    param(
+        [Parameter()]
+        [string]$Path,
+        [Parameter()]
+        [switch]$Project
+    )
+    if($null -eq $Path){
+        $Path = Get-Location
+    }
+    Do {
+        Write-Debug "Searching in $Path"
+        $proj = Get-ChildItem -Path $Path -Filter "*.csproj"
+        Write-Debug "Found project file: $proj"
+        if(-not $Project){
+            $sln = Get-ChildItem -Path $Path -Filter "*.sln"
+            Write-Debug "Found solution file: $sln"
+        }
+
+        If($Project){
+            If($null -ne $proj) {
+                Write-Debug "Returning project file: $proj"
+                return $proj
+            }
+        }
+        
+        If($null -ne $sln) {
+            break;
+        }
+
+        $Path = $Path | Split-path
+    } While("" -ne $Path)
+
+    If($null -eq $sln){
+        Write-Debug "Returning project file: $proj"
+        return $proj
+    }
+    Write-Debug "Returning solution file: $sln"
+    return $sln
+}
+
+Function Set-LocationToProjectRoot {
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
+    param(
+        [Parameter()]
+        [switch]$Project
+    )
+
+    $path = Resolve-ProjectRoot -Project $Project
+    if ($PSCmdlet.ShouldProcess("$path", "Set location")) {
+        Convert-ToCleanLocation $path
+    }
+}
+
 Function Start-GoogleQuery {
     [CmdletBinding(
         SupportsShouldProcess,
@@ -335,7 +390,6 @@ Function Get-EdgeSecret {
         }
     }
 }
-
 
 Set-Alias -Name gig         -Value New-GitignoreFile
 Set-Alias -Name lgi         -Value Get-GitignoreType

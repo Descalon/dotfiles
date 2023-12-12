@@ -3,8 +3,10 @@ testResults.xml
 coverage.xml
 test-results/
 
-config/*
+config/
 !config/*.template*
 *.bak
 
 test.ps1
+
+[Bb]d*.*

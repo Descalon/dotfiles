@@ -92,19 +92,15 @@ Function Set-Profile {
 Function Import-PSReadlineVimConfiguration {
     [CmdletBinding()]
     param()
+    Set-PSReadlineOption -EditMode Vi
+    Set-PSReadlineOption -ViModeIndicator cursor
+    Set-PSReadLineOption -PredictionSource History
     Set-PSReadLineOption -PredictionSource History
     Set-PSReadLineOption -Colors @{
         InlinePrediction = '#8888AA'
         Parameter        = 'DarkMagenta'
         Operator         = 'Magenta'
         String           = 'Green'
-    }
-    Set-PSReadLineKeyHandler -ViMode Insert  -Chord "Ctrl+c" -Function ViCommandMode
-    Set-PSReadLineKeyHandler -ViMode Insert -Chord "Ctrl+l" -Function ForwardWord
-    Set-PSReadLineKeyHandler -ViMode Insert -Chord "Ctrl+j" -Function AcceptSuggestion
-    Set-PSReadLineKeyHandler -ViMode Insert -Chord "Ctrl+k" -ScriptBlock {
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptSuggestion()
-        [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
 }
 <#
@@ -130,16 +126,7 @@ Function Import-PSReadlineConfiguration {
         [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
     }
 }
-Function Set-ViMode {
-    [CmdletBinding()]
-    param()
-
-    Set-PSReadLineOption -EditMode Vi
-    Set-PSReadLineOption -ViModeIndicator Cursor
-    Import-PSReadlineVimConfiguration
-}
 
 Export-ModuleMember -Function "Set-Profile"
 Export-ModuleMember -Function "Import-PSReadlineConfiguration"
 Export-ModuleMember -Function "Import-PSReadlineVimConfiguration"
-Export-ModuleMember -Function "Set-ViMode"

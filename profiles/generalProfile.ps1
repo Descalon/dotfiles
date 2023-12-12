@@ -1,5 +1,6 @@
 Import-Module "$PSScriptRoot/PsExtensions.psm1"
 Import-Module "$PSScriptRoot/ProfileTemplate.psm1"
-Set-ViMode
+Import-PSReadlineVimConfiguration
+. "$PSScriptRoot/VimKeyBindings.ps1"
 
 Set-Profile mydarkblood2
