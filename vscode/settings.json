@@ -1,0 +1,53 @@
+{
+    "workbench.colorTheme": "Nord",
+    "editor.cursorSurroundingLines": 8,
+    "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
+    //fsharp
+    "FSharp.useSdkScripts": true,
+    "FSharp.inlayHints.typeAnnotations": false,
+    "FSharp.verboseLogging": true,
+    "FSharp.showExplorerOnStartup": false,
+    //editor
+    "editor.fontFamily": "CaskaydiaCove Nerd Font",
+    "editor.fontLigatures": true,
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "editor.minimap.enabled": false,
+    "editor.suggestSelection": "first",
+    "editor.accessibilitySupport": "off",
+    "security.workspace.trust.untrustedFiles": "open",
+    "files.autoSave": "afterDelay",
+    "redhat.telemetry.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.confirmSync": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    //nerdtree
+    "nerdtree.alwaysShowSidebar": true,
+    "nerdtree.hideSidebarWhenOpenFile": false,
+    //vim
+    "vscode-neovim.neovimExecutablePaths.win32": "nvim",
+    "powershell.integratedConsole.startInBackground": true,
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": [
+                "-ExecutionPolicy",
+                "ByPass",
+                "-NoLogo",
+                "-NoProfile",
+                "-NoExit",
+                "-File",
+                "C:/Users/nagla/.dotfiles/psprofile/profiles/terminalProfile.ps1"
+            ]
+        },
+    },
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "azureFunctions.showProjectWarning": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    }
+}
