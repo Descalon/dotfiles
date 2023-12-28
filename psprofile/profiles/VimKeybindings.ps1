@@ -25,6 +25,10 @@ Set-PSReadLineKeyHandler -ViMode Command -Chord "g,s" -ScriptBlock {
     insertcommand("git status")
 } -Description "Enters git status"
 
+Set-PSReadLineKeyHandler -ViMode Command -Chord "g,l" -ScriptBlock {
+    insertcommand("git adog")
+} -Description "Enters git adog"
+
 Set-PSReadLineKeyHandler -ViMode Command -Chord "g,m" -ScriptBlock {
     [Microsoft.Powershell.PSConsoleReadLine]::DeleteLine()
     [Microsoft.Powershell.PSConsoleReadLine]::Insert("git commit -am ''")

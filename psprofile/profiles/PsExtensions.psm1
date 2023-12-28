@@ -405,9 +405,10 @@ Set-Alias -Name gr          -Value Set-LocationToGitRoot
 Set-Alias -Name q?          -Value Start-GoogleQuery
 Set-Alias -Name google      -Value Start-GoogleQuery
 
-
 Remove-Alias -Name sl -Force -ErrorAction SilentlyContinue
 Set-Alias -Name sl -Value Convert-ToCleanLocation -Force
 
 Export-ModuleMember -Function "*-*"
 Export-ModuleMember -Alias "*"
+
+env -Variable "DOTFILES" -Value (Resolve-Path "~/.dotfiles") -Target User -Confirm:$false
