@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Nord",
+    "workbench.colorTheme": "Catppuccin Frappé",
     "editor.cursorSurroundingLines": 8,
     "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?",
     //fsharp
@@ -49,5 +49,18 @@
     "azureFunctions.showProjectWarning": false,
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
-    }
+    },
+    "vscode-neovim.highlightGroups.highlights": {
+      "IncSearch": {
+        "borderStyle": "solid",
+        "borderWidth": "1px"
+      },
+      "Search": {
+        "borderStyle": "solid",
+        "borderWidth": "1px"
+      }
+    },
+    "editor.lineNumbers": "relative",
+    "workbench.iconTheme": "catppuccin-frappe",
+
 }

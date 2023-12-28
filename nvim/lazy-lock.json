@@ -1,4 +1,6 @@
 {
   "hop.nvim": { "branch": "master", "commit": "df0b5b693ef8c3d414b5b85e4bc11cea99c4958d" },
-  "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" }
+  "improved-ft.nvim": { "branch": "main", "commit": "c7cfd6a38e2db81f929f6fda9246b05f285ef838" },
+  "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
+  "nvim-surround": { "branch": "main", "commit": "703ec63aa798e5e07d309b35e42def34bebe0174" }
 }

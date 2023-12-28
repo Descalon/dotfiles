@@ -10,3 +10,7 @@ config/
 test.ps1
 
 [Bb]d*.*
+
+.vscode/
+todo.md
+
