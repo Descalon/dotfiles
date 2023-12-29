@@ -20,7 +20,7 @@ return {
     "tpope/vim-fugitive",
     cond = not vim.g.vscode,
     config = function()
-      vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+      vim.keymap.set("n", "<leader>gs", "[[:vert Git<CR>]]")
       vim.keymap.set("n", "<leader>ga", function() vim.cmd.Git({ "adog" }) end)
     end
   },
