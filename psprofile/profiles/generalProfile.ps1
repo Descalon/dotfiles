@@ -4,3 +4,4 @@ Import-PSReadlineVimConfiguration
 . "$PSScriptRoot/vimKeyBindings.ps1"
 
 Set-Profile mydarkblood2
+$env:Term = "xterm-x256color"
