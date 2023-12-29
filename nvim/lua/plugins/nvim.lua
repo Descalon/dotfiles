@@ -3,11 +3,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     cond = not vim.g.vscode,
-    config = function()
-      local telescope = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>pf', telescope.find_files, {})
-      vim.keymap.set('n', '<C-p>', telescope.git_files, {})
-    end
   },
   {
     "mbbill/undotree",
@@ -28,7 +23,16 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    cond = not vim.g.vscode
+    cond = not vim.g.vscode,
+    config = function()
+      local telescope = require('telescope.builtin')
+      vim.keymap.set('n', '<leader>pf', telescope.find_files, {})
+      vim.keymap.set('n', '<leader>pb', telescope.buffers, {})
+      vim.keymap.set('n', '<leader>pg', telescope.git_files, {})
+      vim.keymap.set('n', '<leader>ps', function()
+        telescope.grep_string({ search = vim.fn.input("Grep > ") })
+      end)
+    end
   },
   {
     "nvim-lua/plenary.nvim",
@@ -39,24 +43,6 @@ return {
     name = "catppuccin",
     priority = 1000,
     cond = not vim.g.vscode
-  },
-  {
-    "kylechui/nvim-surround",
-    version = "*",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup()
-    end
-  },
-  {
-    "backdround/improved-ft.nvim",
-    config = function()
-      require("improved-ft").setup({
-        use_default_mappings = true,
-        ignore_char_case = true,
-        use_relative_repetition = true,
-      })
-    end
   },
   {
     "neovim/nvim-lspconfig",
