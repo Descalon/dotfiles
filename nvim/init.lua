@@ -1,37 +1,24 @@
-vim.opt.clipboard = "unnamedplus"
-vim.opt.nu = true
-vim.opt.relativenumber = true
+require("options")
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
 
-vim.opt.smartcase = true
-vim.opt.smartindent = true
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local yank_group = augroup('HighlightYank', {})
 
-vim.opt.wrap = false
-
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("USERPROFILE") .. "/.vim/undodir"
-vim.opt.undofile = true
-
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-
-vim.opt.termguicolors = true
-
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
-
-vim.opt.updatetime = 50
-
+autocmd('TextYankPost', {
+    group = yank_group,
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 250,
+        })
+    end,
+})
 vim.g.mapleader = " "
-
-vim.opt.title = true
-vim.opt.titlestring = [[%t – %{fnamemodify(getcwd(), ':t')}]]
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
