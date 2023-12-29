@@ -114,13 +114,18 @@ return {
           auto_insert = true,
         },
       })
-      vim.keymap.set("n", "<leader>v", function() require("nvterm.terminal").new "vertical" end)
-      vim.keymap.set("n", "<leader>h", function() require("nvterm.terminal").new "horizontal" end)
+      vim.keymap.set("n", "<leader>v", function()
+        require("nvterm.terminal").new "vertical"
+        vim.cmd[[file pwsh]]
+      end)
+      vim.keymap.set("n", "<leader>h", function()
+        require("nvterm.terminal").new "horizontal"
+        vim.cmd[[file pwsh]]
+      end)
     end,
   },
   {
     "Shatur/neovim-session-manager",
-    cond = not vim.g.vscode,
     config = function()
       local Path = require('plenary.path')
       local config = require('session_manager.config')
