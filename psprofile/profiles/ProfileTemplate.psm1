@@ -1,7 +1,6 @@
 Import-Module Terminal-Icons
 Import-Module -Name posh-git
-Import-Module -Name posh-sshell
-Import-Module "$PSScriptRoot/PSExtensions.psm1"
+Import-Module "$PSScriptRoot/PsExtensions.psm1"
 
 $root = Split-Path $PSScriptRoot
 

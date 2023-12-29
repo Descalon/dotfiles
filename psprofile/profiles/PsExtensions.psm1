@@ -1,5 +1,4 @@
 Import-Module -Name posh-git
-Import-Module -Name posh-sshell
 
 Function Get-GitignoreType {
     [CmdletBinding()]
