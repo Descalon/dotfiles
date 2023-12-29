@@ -1,19 +1,18 @@
+if vim.g.vscode then return {} end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    cond = not vim.g.vscode,
   },
   {
     "mbbill/undotree",
-    cond = not vim.g.vscode,
     config = function()
       vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
     end
   },
   {
     "tpope/vim-fugitive",
-    cond = not vim.g.vscode,
     config = function()
       vim.keymap.set("n", "<leader>gs", "[[:vert Git<CR>]]")
       vim.keymap.set("n", "<leader>ga", function() vim.cmd.Git({ "adog" }) end)
@@ -23,7 +22,6 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    cond = not vim.g.vscode,
     config = function()
       local telescope = require('telescope.builtin')
       vim.keymap.set('n', '<leader>pf', telescope.find_files, {})
@@ -36,37 +34,29 @@ return {
   },
   {
     "nvim-lua/plenary.nvim",
-    cond = not vim.g.vscode
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    cond = not vim.g.vscode
   },
   {
     "neovim/nvim-lspconfig",
-    cond = not vim.g.vscode
   },
   {
     "williamboman/mason.nvim",
-    cond = not vim.g.vscode
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    cond = not vim.g.vscode
   },
   {
     "hrsh7th/nvim-cmp",
-    cond = not vim.g.vscode
   },
   {
     "hrsh7th/cmp-nvim-lsp",
-    cond = not vim.g.vscode
   },
   {
     "L3MON4D3/LuaSnip",
-    cond = not vim.g.vscode
   },
   {
     "theprimeagen/harpoon",
@@ -82,7 +72,6 @@ return {
       vim.keymap.set("n", "<C-k>", function() ui.nav_file(3) end)
       vim.keymap.set("n", "<C-l>", function() ui.nav_file(4) end)
     end,
-    cond = not vim.g.vscode
   },
   {
     "NvChad/nvterm",
