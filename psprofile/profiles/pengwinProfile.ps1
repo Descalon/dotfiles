@@ -1,3 +1,7 @@
+Import-Module "$PSScriptRoot/PsExtensions.psm1"
 Import-Module "$PSScriptRoot/ProfileTemplate.psm1"
-Set-Profile slim
-Import-PSReadlineConfiguration
+Import-PSReadlineVimConfiguration
+. "$PSScriptRoot/VimKeybindings.ps1"
+
+Set-Profile princess
+$env:Term = "xterm-x256color"
