@@ -63,7 +63,8 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     config = function()
       require("telescope").load_extension "file_browser"
-      vim.keymap.set("n", "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR><ESC>")
+      vim.keymap.set("n", "<leader>pv", [[:Telescope file_browser path=%:p:h select_buffer=true<CR><ESC>]],
+        { silent = true })
     end
   },
   {
@@ -183,7 +184,7 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-    config = function ()
+    config = function()
       -- Lua
       vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
       vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
@@ -196,7 +197,7 @@ return {
   {
     "ojroques/nvim-hardline",
     config = function()
-      require('hardline').setup{
+      require('hardline').setup {
         theme = 'catppuccin_minimal'
       }
     end
