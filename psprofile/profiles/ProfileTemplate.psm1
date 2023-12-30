@@ -80,15 +80,13 @@ Function Set-Profile {
     }
 }
 
-
-
 <#
 .SYNOPSIS
     Imports default PSReadlineConfiguration
 .DESCRIPTION
     Imports default PSReadlineConfiguration
 #>
-Function Import-PSReadlineVimConfiguration {
+Function Set-VIMode {
     [CmdletBinding()]
     param()
     Set-PSReadlineOption -EditMode Vi
@@ -101,6 +99,8 @@ Function Import-PSReadlineVimConfiguration {
         Operator         = 'Magenta'
         String           = 'Green'
     }
+    $env:Visual = "nvim"
+    . "$PSScriptRoot/VimKeybindings.ps1"
 }
 <#
 .SYNOPSIS

@@ -1,7 +1,6 @@
 Import-Module "$PSScriptRoot/ProfileTemplate.psm1"
 Import-Module "$PSScriptRoot/PsExtensions.psm1"
-Import-PSReadlineVimConfiguration
-. "$PSScriptRoot/vimKeyBindings.ps1"
+Set-VIMode
 
 Set-Profile princess
 
