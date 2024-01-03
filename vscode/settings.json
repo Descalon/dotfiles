@@ -23,9 +23,6 @@
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
-    //nerdtree
-    "nerdtree.alwaysShowSidebar": true,
-    "nerdtree.hideSidebarWhenOpenFile": false,
     //vim
     "vscode-neovim.neovimExecutablePaths.win32": "nvim",
     "powershell.integratedConsole.startInBackground": true,
@@ -62,5 +59,6 @@
     },
     "editor.lineNumbers": "relative",
     "workbench.iconTheme": "catppuccin-frappe",
+    "editor.fontSize": 17,
 
 }
