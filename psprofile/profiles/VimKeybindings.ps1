@@ -1,32 +1,33 @@
-Function insertcommand($c) {
-    [Microsoft.Powershell.PSConsoleReadLine]::DeleteLine()
-    [Microsoft.Powershell.PSConsoleReadLine]::Insert($c)
-    [Microsoft.Powershell.PSConsoleReadLine]::AcceptLine()
-}
-Function copyfrombuffercommand($format) {
+Set-PSReadLineKeyHandler -ViMode Command -Chord "g,b" -ScriptBlock {
     $buff = ""
     $pos = 0
     [Microsoft.Powershell.PSConsoleReadLine]::GetBufferState([ref] $buff, [ref] $pos)
-    insertcommand($format -f $buff)
-}
-
-Set-PSReadLineKeyHandler -ViMode Command -Chord "g,b" -ScriptBlock {
-    copyfrombuffercommand("git checkout -b {0}")
+    [Microsoft.Powershell.PSConsoleReadLine]::DeleteLine()
+    [Microsoft.Powershell.PSConsoleReadLine]::Insert("git checkout -b {0}")
+    [Microsoft.Powershell.PSConsoleReadLine]::AcceptLine()
 } -Description "Removes text from current buffer and inserts it into ``git checkout -b {0}`` "
 Set-PSReadLineKeyHandler -ViMode Command -Chord "g,n" -ScriptBlock {
-    insertcommand("git nuke")
+    [Microsoft.Powershell.PSConsoleReadLine]::DeleteLine()
+    [Microsoft.Powershell.PSConsoleReadLine]::Insert("git nuke")
+    [Microsoft.Powershell.PSConsoleReadLine]::AcceptLine()
 } -Description "Enters git nuke"
 
 Set-PSReadLineKeyHandler -ViMode Command -Chord "g,y" -ScriptBlock {
-    insertcommand("git yolo")
+    [Microsoft.Powershell.PSConsoleReadLine]::DeleteLine()
+    [Microsoft.Powershell.PSConsoleReadLine]::Insert("git yolo")
+    [Microsoft.Powershell.PSConsoleReadLine]::AcceptLine()
 } -Description "Enters git yolo"
 
 Set-PSReadLineKeyHandler -ViMode Command -Chord "g,s" -ScriptBlock {
-    insertcommand("git status")
+    [Microsoft.Powershell.PSConsoleReadLine]::DeleteLine()
+    [Microsoft.Powershell.PSConsoleReadLine]::Insert("git status")
+    [Microsoft.Powershell.PSConsoleReadLine]::AcceptLine()
 } -Description "Enters git status"
 
 Set-PSReadLineKeyHandler -ViMode Command -Chord "g,l" -ScriptBlock {
-    insertcommand("git adog")
+    [Microsoft.Powershell.PSConsoleReadLine]::DeleteLine()
+    [Microsoft.Powershell.PSConsoleReadLine]::Insert("git adog")
+    [Microsoft.Powershell.PSConsoleReadLine]::AcceptLine()
 } -Description "Enters git adog"
 
 Set-PSReadLineKeyHandler -ViMode Command -Chord "g,m" -ScriptBlock {

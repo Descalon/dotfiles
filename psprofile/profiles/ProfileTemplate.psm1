@@ -128,4 +128,4 @@ Function Import-PSReadlineConfiguration {
 
 Export-ModuleMember -Function "Set-Profile"
 Export-ModuleMember -Function "Import-PSReadlineConfiguration"
-Export-ModuleMember -Function "Import-PSReadlineVimConfiguration"
+Export-ModuleMember -Function "Set-VIMode"
