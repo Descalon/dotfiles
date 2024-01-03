@@ -23,13 +23,7 @@ return {
     tag = '0.1.5',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      local telescope = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>pf', telescope.find_files, {})
-      vim.keymap.set('n', '<leader>pb', telescope.buffers, {})
-      vim.keymap.set('n', '<leader>pg', telescope.git_files, {})
-      vim.keymap.set('n', '<leader>ps', function()
-        telescope.grep_string({ search = vim.fn.input("Grep > ") })
-      end)
+      require("plugins.config.telescope-config")
     end
   },
   {
@@ -68,7 +62,6 @@ return {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     config = function()
-      require("telescope").setup()
       require("telescope").load_extension "file_browser"
       vim.keymap.set("n", "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
     end
@@ -183,5 +176,23 @@ return {
     config = function()
       require('Comment').setup()
     end,
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    config = function ()
+      -- Lua
+      vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+      vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+    end
   }
 }
