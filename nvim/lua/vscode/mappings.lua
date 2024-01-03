@@ -10,11 +10,13 @@ vim.keymap.set("n", "<S-TAB>", function() vscode.call("workbench.action.previous
 vim.keymap.set("n", "<leader>x", function() vscode.call("workbench.action.closeOtherEditors") end)
 vim.keymap.set("n", "\\e", function() vscode.call("workbench.action.openSettingsJson") end)
 vim.keymap.set("n", "\\n", function() vscode.call("workbench.action.files.newUntitledFile") end)
-vim.keymap.set("n", "\\r", function() vscode.call("workbench.action.reloadWindow") end)
+vim.keymap.set("n", "\\rw", function() vscode.call("workbench.action.reloadWindow") end)
+vim.keymap.set("n", "\\rn", function() vscode.call("vscode-neovim.restart") end)
 vim.keymap.set("n", "gh", function() vscode.call("workbench.action.navigateBack") end)
 vim.keymap.set("n", "gl", function() vscode.call("workbench.action.navigateforward") end)
 vim.keymap.set("n", "<leader>X", function() vscode.call("workbench.action.closeActiveEditor") end)
 vim.keymap.set("n", "<leader>f", function() vscode.call("editor.action.formatDocument") end)
+vim.keymap.set("n", "==", function() vscode.call("editor.action.formatDocument") end)
 vim.keymap.set("n", "<leader><leader>tl", function() vscode.call("testing.reRunLastRun") end)
 vim.keymap.set("n", "<leader><leader>tdl", function() vscode.call("testing.debugLastRun") end)
 vim.keymap.set("n", "<leader><leader>tc", function() vscode.call("testing.runAtCursor") end)
@@ -25,7 +27,13 @@ vim.keymap.set("n", "<leader>w", function() vscode.call("workbench.action.files.
 vim.keymap.set("n", "gn", function() vscode.call("workbench.action.quickOpen") end)
 vim.keymap.set("n", "<leader>pf", function() vscode.call("workbench.action.quickOpen") end)
 vim.keymap.set("n", "K", function() vscode.call("editor.action.showDefinitionPreviewHover") end)
-
-
+vim.keymap.set("n", "<leader>v", function() vscode.call("workbench.action.createTerminalEditorSide") end)
+-- workbench.action.createTerminalEditorSide
 vim.keymap.set("n", "<leader>sbe", function() vscode.call("workbench.view.explorer") end)
 vim.keymap.set("n", "<leader>sbx", function() vscode.call("workbench.view.extensions") end)
+
+vim.keymap.set("n", "<leader>oa", function ()
+  local editorLang = vscode.get_config("editorLangId")
+  print("look at my variable: ")
+  print(editorLang)
+end)
