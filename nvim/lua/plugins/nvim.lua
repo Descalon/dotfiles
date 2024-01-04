@@ -63,7 +63,7 @@ return {
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     config = function()
       require("telescope").load_extension "file_browser"
-      vim.keymap.set("n", "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+      vim.keymap.set("n", "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR><ESC>")
     end
 
   },
@@ -159,10 +159,9 @@ return {
     dependencies = {
       { 'nvim-treesitter/nvim-treesitter', lazy = true },
     },
-    event = 'VeryLazy',
+    ft = "org",
     config = function()
       require('orgmode').setup_ts_grammar()
-
       require('orgmode').setup({
         org_agenda_files = '~/orgfiles/**/*',
         org_default_notes_file = '~/orgfiles/refile.org',
@@ -193,6 +192,14 @@ return {
       vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
       vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
       vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+    end
+  },
+  {
+    "ojroques/nvim-hardline",
+    config = function()
+      require('hardline').setup{
+      theme = 'catppuccin_minimal'
+    }
     end
   }
 }
