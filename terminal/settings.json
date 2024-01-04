@@ -81,7 +81,7 @@
                 "colorScheme": "Campbell",
                 "commandline": "pwsh -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit",
                 "guid": "{134a76ff-6c35-4585-b3b3-a849cb4d2a8d}",
-                "hidden": false,
+                "hidden": true,
                 "icon": "ms-appx:///ProfileIcons/pwsh.png",
                 "name": "PowerShell noprofile",
                 "startingDirectory": "%USERPROFILE%"
