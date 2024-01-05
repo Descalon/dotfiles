@@ -57,6 +57,24 @@ require('mason-lspconfig').setup({
     end
   },
 })
+local dap = require('dap')
+
+dap.adapters.coreclr = {
+  type = 'executable',
+  command = 'c:/Users/nagla/lib/netcoredbg/netcoredbg.exe',
+  args = {'--interpreter=vscode'}
+}
+
+dap.configurations.cs = {
+  {
+    type = "coreclr",
+    name = "launch - netcoredbg",
+    request = "launch",
+    program = function()
+        return vim.fn.input('Path to dll ', vim.fn.getcwd() .. '/bin/Debug/net8.0', 'file')
+    end,
+  },
+}
 
 local cmp = require('cmp')
 
@@ -75,3 +93,5 @@ cmp.setup({
     end,
   },
 })
+
+require("dapui").setup()
