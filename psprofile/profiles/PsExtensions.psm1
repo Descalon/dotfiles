@@ -390,6 +390,28 @@ Function Get-EdgeSecret {
     }
 }
 
+Function Invoke-ZLocationNvim { # needs a way better name
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [string] $Path
+    )
+    $z = Get-ZLocation $Path
+    if($null -eq $z) { 
+        Write-Error "Couldn't resolve path $Path"
+        return
+    }
+
+    $target = $z | 
+        ForEach-Object {$_.GetEnumerator()} |
+        ForEach-Object {[PSCustomObject]@{Weight = $_.Value; Path = $_.Name}} |
+        Sort-Object -Property "Weight" -Descending:$true |
+        Select-Object -First 1 -ExpandProperty Path
+
+    Set-ZLocation $target
+    & nvim
+}
+
 Set-Alias -Name gig         -Value New-GitignoreFile
 Set-Alias -Name lgi         -Value Get-GitignoreType
 Set-Alias -Name cakeinit    -Value Get-CakeBootstrapScript
@@ -403,6 +425,8 @@ Set-Alias -Name env         -Value Set-EnvironmentVariable
 Set-Alias -Name gr          -Value Set-LocationToGitRoot
 Set-Alias -Name q?          -Value Start-GoogleQuery
 Set-Alias -Name google      -Value Start-GoogleQuery
+Set-Alias -Name zn          -Value Invoke-ZLocationNvim
+
 
 Remove-Alias -Name sl -Force -ErrorAction SilentlyContinue
 Set-Alias -Name sl -Value Convert-ToCleanLocation -Force
