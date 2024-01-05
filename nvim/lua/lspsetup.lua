@@ -63,12 +63,12 @@ local cmp = require('cmp')
 cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'orgmode' }
   },
-  mapping = cmp.mapping.preset.insert({
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-
-    ['<C-Space>'] = cmp.mapping.complete(),
-  }),
+  mapping = cmp.mapping.preset.insert {
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-space>'] = cmp.mapping.complete(),
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
