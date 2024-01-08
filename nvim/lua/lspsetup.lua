@@ -21,7 +21,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
   end
 })
-
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local default_setup = function(server)
@@ -57,6 +56,7 @@ require('mason-lspconfig').setup({
     end
   },
 })
+
 local dap = require('dap')
 
 dap.adapters.coreclr = {
