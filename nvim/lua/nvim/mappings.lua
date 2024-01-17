@@ -1,8 +1,8 @@
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>w", [[:w<CR>]])
-vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set("n", "<leader>q", [[:q<CR>]], { silent = true })
-vim.keymap.set("n", "<leader>Q", [[:qa<CR>]], { silent = true })
+vim.keymap.set("n", "<leader>w", [[:w<CR>]], { silent = true })
+vim.keymap.set("x", "<leader>p", [["_dP]], { silent = true })
+vim.keymap.set("n", "<leader>q", [[:wq<CR>]], { silent = true })
+vim.keymap.set("n", "<leader>Q", [[:wqa<CR>]], { silent = true })
 
 -- window management
 local nav = require('nvim.navigation')
