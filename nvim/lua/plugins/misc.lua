@@ -19,14 +19,6 @@ return {
     end
   },
   {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.5',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require("nvim.config.telescope-config")
-    end
-  },
-  {
     "nvim-lua/plenary.nvim",
   },
   {
