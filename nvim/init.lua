@@ -32,11 +32,12 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("plugins")
 
 if vim.g.vscode then
+    require("lazy").setup("plugins.common")
     require("vscode.mappings")
 else
+    require("lazy").setup("plugins")
     vim.cmd[[colorscheme catppuccin-frappe]]
     require("nvim.mappings")
     require("lspsetup")
