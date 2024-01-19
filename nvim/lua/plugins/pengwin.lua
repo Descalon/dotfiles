@@ -27,6 +27,8 @@ return {
 
       vim.g['vimtex_context_pdf_viewer'] = 'okular'
 
+      vim.keymap.set("n", "<leader>zz", [[:VimtexTocOpen<CR>]], { silent = true })
+
       require('cmp_vimtex').setup({
         additional_information = {
           info_in_menu = true,
@@ -48,6 +50,8 @@ return {
     },
     config = function()
       require "telescope".load_extension("bibtex")
+
+      vim.keymap.set('n', '<leader>pb', [[:Telescope bibtex<CR>]], { silent = true })
     end,
   },
 }

@@ -99,7 +99,7 @@ Function Set-VIMode {
         Operator         = 'Magenta'
         String           = 'Green'
     }
-    $env:Visual = "nvim"
+    $env:VISUAL = "nvim"
     . "$PSScriptRoot/VimKeybindings.ps1"
 }
 <#
