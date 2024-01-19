@@ -21,7 +21,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>la', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
   end
 })
-
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local default_setup = function(server)
@@ -58,21 +57,42 @@ require('mason-lspconfig').setup({
   },
 })
 
+local dap = require('dap')
+
+dap.adapters.coreclr = {
+  type = 'executable',
+  command = 'c:/Users/nagla/lib/netcoredbg/netcoredbg.exe',
+  args = {'--interpreter=vscode'}
+}
+
+dap.configurations.cs = {
+  {
+    type = "coreclr",
+    name = "launch - netcoredbg",
+    request = "launch",
+    program = function()
+        return vim.fn.input('Path to dll ', vim.fn.getcwd() .. '/bin/Debug/net8.0', 'file')
+    end,
+  },
+}
+
 local cmp = require('cmp')
 
 cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
     { name = 'vimtex' },
+    { name = 'orgmode' }
   },
-  mapping = cmp.mapping.preset.insert({
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-
-    ['<C-Space>'] = cmp.mapping.complete(),
-  }),
+  mapping = cmp.mapping.preset.insert {
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-space>'] = cmp.mapping.complete(),
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
   },
 })
+
+require("dapui").setup()

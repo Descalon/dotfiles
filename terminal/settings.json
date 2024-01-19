@@ -54,10 +54,11 @@
                 "backgroundImageOpacity": 0.25,
                 "colorScheme": "One Half Dark",
                 "commandline": "pwsh -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -File c:\\users\\nagla\\.dotfiles\\psprofile\\profiles\\generalProfile.ps1",
+                "cursorShape": "underscore",
                 "font": 
                 {
                     "face": "CaskaydiaCove Nerd Font",
-                    "size": 13.0
+                    "size": 14.0
                 },
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
@@ -66,6 +67,24 @@
                 "opacity": 80,
                 "source": "Windows.Terminal.PowershellCore",
                 "useAcrylic": true
+            },
+            {
+                "backgroundImage": "C:\\Users\\nagla\\.dotfiles\\psprofile\\imgs\\Downside.jpg",
+                "backgroundImageOpacity": 0.4,
+                "backgroundImageStretchMode": "uniformToFill",
+                "colorScheme": "One Half Dark",
+                "cursorShape": "underscore",
+                "font": 
+                {
+                    "face": "CaskaydiaCove Nerd Font",
+                    "size": 16.0
+                },
+                "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
+                "hidden": false,
+                "icon": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_23.7.1.0_x64__kd1vv0z0vy70w\\Assets\\pengwin.png",
+                "name": "Pengwin",
+                "opacity": 79,
+                "source": "Windows.Terminal.Wsl"
             },
             {
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -81,36 +100,20 @@
                 "colorScheme": "Campbell",
                 "commandline": "pwsh -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit",
                 "guid": "{134a76ff-6c35-4585-b3b3-a849cb4d2a8d}",
-                "hidden": true,
+                "hidden": false,
                 "icon": "ms-appx:///ProfileIcons/pwsh.png",
                 "name": "PowerShell noprofile",
                 "startingDirectory": "%USERPROFILE%"
             },
             {
-                "backgroundImage": "C:\\Users\\nagla\\.dotfiles\\psprofile\\imgs\\Downside.jpg",
-                "backgroundImageOpacity": 0.4,
-                "backgroundImageStretchMode": "uniformToFill",
-                "colorScheme": "One Half Dark",
-                "font": 
-                {
-                    "face": "CaskaydiaCove Nerd Font"
-                },
-                "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
-                "hidden": false,
-                "icon": "%ProgramFiles%\\WindowsApps\\WhitewaterFoundryLtd.Co.16571368D6CFF_23.7.1.0_x64__kd1vv0z0vy70w\\Assets\\pengwin.png",
-                "name": "Pengwin",
-                "opacity": 79,
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
                 "guid": "{76a1783f-45a7-5f09-80c7-1454c810ce0e}",
-                "hidden": false,
+                "hidden": true,
                 "name": "Developer Command Prompt for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             },
             {
                 "guid": "{9ae368a7-4d40-559a-a8aa-a378a11d8f8f}",
-                "hidden": false,
+                "hidden": true,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             }
