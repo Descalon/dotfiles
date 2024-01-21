@@ -6,8 +6,8 @@ return {
   config = function()
     require('orgmode').setup_ts_grammar()
     require('orgmode').setup({
-      org_agenda_files = '~/orgfiles/**/*',
-      org_default_notes_file = '~/orgfiles/refile.org',
+      org_agenda_files = '/mnt/c/Users/nagla/orgfiles/**/*',
+      org_default_notes_file = '/mnt/c/Users/nagla/orgfiles/refile.org',
       org_todo_keywords = { 'TODO', 'ACTIVE', '|', 'DONE' },
       org_capture_templates = {
         m = {
