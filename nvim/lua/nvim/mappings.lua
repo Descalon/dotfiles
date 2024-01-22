@@ -12,7 +12,6 @@ vim.keymap.set({"n", "t"}, "<M-k>", function() nav.navigate("k") end)
 vim.keymap.set({"n", "t"}, "<M-l>", function() nav.navigate("l") end)
 
 vim.keymap.set("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true))
-
-
--- autocmd BufWinEnter,WinEnter term://* startinsert
+local focus = require('focus')
+vim.keymap.set("n", "<c-o>", function() focus.split_nicely() end)
 
