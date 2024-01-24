@@ -26,3 +26,4 @@ vim.keymap.set({ "n", "t" }, "<M-l>", function() nav.navigate("l") end)
 
 vim.keymap.set("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true))
 
+vim.keymap.set("i", "kj", "<Esc>", { silent = true }) -- trial
