@@ -41,20 +41,19 @@ end
 ---@param direction string
 function N.navigate(direction)
   -- window id before navigation
-  local cur_win = A.nvim_get_current_win()
+  --local cur_win = A.nvim_get_current_win()
   if not N.last_pane then
     cmd('wincmd ' .. direction)
   end
 
-  local next_win = A.nvim_get_current_win()
-  local at_edge = cur_win == next_win
-
-  if back_to_mux(at_edge) then
-    os.execute('wt -w "0" move-focus ' .. keymap[direction])
-    N.last_pane = true
-  else
-    N.last_pane = false
-  end
+  -- local next_win = A.nvim_get_current_win()
+  -- local at_edge = cur_win == next_win
+  -- if back_to_mux(at_edge) then
+  --   os.execute('wt -w "0" move-focus ' .. keymap[direction])
+  --   N.last_pane = true
+  -- else
+  --   N.last_pane = false
+  -- end
 end
 
 return N

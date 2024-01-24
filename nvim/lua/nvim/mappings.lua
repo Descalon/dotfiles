@@ -10,7 +10,6 @@ local quitfn = function (c)
   end
 end
 
--- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>w", [[:w<CR>]], { silent = true })
 vim.keymap.set("x", "<leader>p", [["_dP]], { silent = true })
 vim.keymap.set("n", "<leader>q", function() quitfn('q') end, { silent = true })
