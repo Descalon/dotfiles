@@ -2,7 +2,7 @@ Import-Module Terminal-Icons
 Import-Module -Name posh-git
 Import-Module "$PSScriptRoot/PsExtensions.psm1"
 
-$root = Split-Path $PSScriptRoot
+$root = Split-Path $PSScriptRoot | Split-Path
 
 $script:builtinPath = "~/AppData/Local/Programs/oh-my-posh/themes"
 $script:localPath = "$root/themes"
