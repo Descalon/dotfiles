@@ -434,4 +434,4 @@ Set-Alias -Name sl -Value Convert-ToCleanLocation -Force
 Export-ModuleMember -Function "*-*"
 Export-ModuleMember -Alias "*"
 
-env -Variable "DOTFILES" -Value (Resolve-Path "~/.dotfiles") -Target User -Confirm:$false
+# env -Variable "DOTFILES" -Value (Resolve-Path "~/.dotfiles") -Target User -Confirm:$false

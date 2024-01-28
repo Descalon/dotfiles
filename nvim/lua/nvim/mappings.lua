@@ -2,17 +2,26 @@ local A = vim.api
 local cmd = A.nvim_command
 
 local quitfn = function()
-  if vim.bo.buftype ~= '' or string.find(vim.fn.expand("%"), ".+%.git.COMMIT_EDITMSG$") then
+  local bufname = vim.fn.expand("%")
+  if
+      vim.bo.buftype ~= ''
+  then
     cmd('q')
+  elseif
+      string.find(bufname, "nvim.descalon")
+      or string.find(bufname, ".+%git-rebase-todo$")
+      or string.find(bufname, ".+%.git.COMMIT_EDITMSG$")
+  then
+    cmd('wq')
   else
-    cmd('wqa')
+    cmd('wa')
+    cmd('qa') -- workaroud for `wqa`, which fails when a terminal window is open. (probably fails if any buftype~='' is open)
   end
 end
 
 vim.keymap.set("n", "<leader>w", [[:w<CR>]], { silent = true })
 vim.keymap.set("n", "<leader>W", [[:wa<CR>]], { silent = true })
 vim.keymap.set("x", "<leader>p", [["_dP]], { silent = true })
--- vim.keymap.set("n", "<leader>Q", function() quitfn('q') end, { silent = true })
 vim.keymap.set("n", "<leader>q", function() quitfn() end, { silent = true })
 
 local nav = require('nvim.navigation')
