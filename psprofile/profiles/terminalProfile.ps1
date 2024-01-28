@@ -1,5 +1,5 @@
-Import-Module "$PSScriptRoot/ProfileTemplate.psm1"
-Import-Module "$PSScriptRoot/PsExtensions.psm1"
+Import-Module "$PSScriptRoot/config/PsExtensions.psm1"
+Import-Module "$PSScriptRoot/config/ProfileTemplate.psm1"
 Set-VIMode
 
 Set-Profile princess
