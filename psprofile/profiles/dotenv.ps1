@@ -23,7 +23,7 @@ $Env:PATH = @(
     "C:\Users\nagla\AppData\Local\Microsoft\WindowsApps"
     "C:\Users\nagla\tools\kotlinc\bin"
     "C:\Users\nagla\AppData\Local\Microsoft\WinGet\Links"
-)
+) -join ";"
 
 $Env:MSBUILDTERMINALLOGGER = $true
 $Env:DOTFILES = "c:\Users\nagla\.dotfiles\"
