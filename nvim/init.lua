@@ -43,4 +43,4 @@ else
     require("lspsetup")
 end
 
-require("mappings")
+require("commonmappings")
