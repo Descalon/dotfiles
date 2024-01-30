@@ -4,8 +4,7 @@ return {
     config = function()
       require("nvterm").setup({
         terminals = {
-          shell =
-          "pwsh -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -File ~/.dotfiles/psprofile/profiles/terminalProfile.ps1",
+          shell = "pwsh -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -File ~/.dotfiles/psprofile/profiles/terminalProfile.ps1",
           list = {},
           type_opts = {
             float = {
