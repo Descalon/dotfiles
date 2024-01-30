@@ -4,7 +4,8 @@ Import-Module "$PSScriptRoot/PsExtensions.psm1"
 
 $root = Split-Path $PSScriptRoot | Split-Path
 
-$script:builtinPath = "~/AppData/Local/Programs/oh-my-posh/themes"
+$poshPath = & brew --prefix oh-my-posh
+$script:builtinPath = Join-Path -Path $poshPath -ChildPath themes # windows path: "~/AppData/Local/Programs/oh-my-posh/themes"
 $script:localPath = "$root/themes"
 
 Function Register-DotnetArgumentCompleter {
