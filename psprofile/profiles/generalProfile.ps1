@@ -1,7 +1,7 @@
 Import-Module "$PSScriptRoot/config/PsExtensions.psm1"
 Import-Module "$PSScriptRoot/config/ProfileTemplate.psm1"
 Set-VIMode
-Set-Profile mydarkblood2
+Set-Profile cat
 
 $Env:PATH = @(
     "C:\Users\nagla\AppData\Local\nvim-data\mason\bin"
