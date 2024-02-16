@@ -9,8 +9,8 @@ local quitfn = function()
     cmd('q')
   elseif
       string.find(bufname, "Temp\\nvim.0")
-      or string.find(bufname, ".+%git-rebase-todo$")
-      or string.find(bufname, ".+%.git.COMMIT_EDITMSG$")
+      or string.find(bufname, ".*%git-rebase-todo$")
+      or string.find(bufname, ".*%.git.COMMIT_EDITMSG$")
   then
     cmd('wq')
   elseif vim.bo.filetype == 'norg' then

@@ -412,6 +412,11 @@ Function Invoke-ZLocationNvim { # needs a way better name
     & nvim
 }
 
+Function Enable-Zoxide {
+        [CmdletBinding()]
+
+    }
+
 Set-Alias -Name gig         -Value New-GitignoreFile
 Set-Alias -Name lgi         -Value Get-GitignoreType
 Set-Alias -Name cakeinit    -Value Get-CakeBootstrapScript

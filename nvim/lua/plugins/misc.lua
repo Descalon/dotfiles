@@ -2,10 +2,6 @@ if vim.g.vscode then return {} end
 
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  },
-  {
     "mbbill/undotree",
     config = function()
       vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -30,13 +26,25 @@ return {
     "neovim/nvim-lspconfig",
   },
   {
-    "williamboman/mason.nvim",
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-  },
-  {
     "hrsh7th/nvim-cmp",
+    config = function()
+      local cmp = require('cmp')
+      cmp.setup({
+        sources = {
+          { name = 'nvim_lsp' },
+          --    { name = 'orgmode' } Turned off after switching to neorg
+        },
+        mapping = cmp.mapping.preset.insert {
+          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<C-space>'] = cmp.mapping.complete(),
+        },
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+      })
+    end
   },
   {
     "hrsh7th/cmp-nvim-lsp",
@@ -46,7 +54,26 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
-    config = function ()
+    config = function()
+      local dap = require('dap')
+
+      dap.adapters.coreclr = {
+        type = 'executable',
+        command = 'c:/Users/nagla/lib/netcoredbg/netcoredbg.exe',
+        args = { '--interpreter=vscode' }
+      }
+
+      dap.configurations.cs = {
+        {
+          type = "coreclr",
+          name = "launch - netcoredbg",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to dll ', vim.fn.getcwd() .. '/bin/Debug/net8.0', 'file')
+          end,
+        },
+      }
+
       vim.keymap.set("n", "<leader>db", [[:DapToggleBreakpoint <CR>]])
       vim.keymap.set("n", "<leader>dr", [[:DapContinue <CR>]])
     end
@@ -68,6 +95,7 @@ return {
       dap.listeners.before.event_exited.dapui_config = function()
         dapui.close()
       end
+      require("dapui").setup()
     end
   },
   {
@@ -77,13 +105,20 @@ return {
     end
   },
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("telescope").load_extension "file_browser"
-      vim.keymap.set("n", "<leader>pv", ":Telescope file_browser path=%:p:h select_buffer=true<CR><ESC>")
+      require("oil").setup()
+      vim.keymap.set("n", "<leader>pv", [[:Oil<CR>]], { silent = true })
     end
-
+  },
+  {
+    "miversen33/sunglasses.nvim",
+    config = {
+      filter_type = "NOSYNTAX",
+      filter_percent = .65
+    }
   },
   {
     "theprimeagen/harpoon",
@@ -117,7 +152,7 @@ return {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-    config = function ()
+    config = function()
       -- Lua
       vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
       vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
@@ -130,9 +165,9 @@ return {
   {
     "ojroques/nvim-hardline",
     config = function()
-      require('hardline').setup{
-      theme = 'catppuccin_minimal'
-    }
+      require('hardline').setup {
+        theme = 'catppuccin_minimal'
+      }
     end
   }
 }
