@@ -1,28 +1,32 @@
 Import-Module -Name posh-git
 
-Function Get-GitignoreType {
+Function Get-GitignoreType
+{
     [CmdletBinding()]
     Param(
         [string]$Name
     )
     $response = Invoke-WebRequest -Uri "http://www.gitignore.io/api/list"
     $content = $response.Content -split ','
-    if ($Name) {
+    if ($Name)
+    {
         $content | Where-Object { $_ -like $Name }
-    }
-    else {
+    } else
+    {
         $content
     }
 }
-Function New-GitignoreFile {
+Function New-GitignoreFile
+{
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     param(
         [Parameter(Mandatory = $true, position)]
         [ValidateScript( {
-                If ($_ -eq "list") {
+                If ($_ -eq "list")
+                {
                     Throw [System.Management.Automation.ValidationMetadataException] "For the list command use Get-GitignoreTypes"
-                }
-                else {
+                } else
+                {
                     return $true
                 }
             })]
@@ -30,30 +34,36 @@ Function New-GitignoreFile {
         [Parameter(Mandatory = $false)]
         [switch]$Append
     )
-    Begin {
-        try {
+    Begin
+    {
+        try
+        {
             $params = ($list | ForEach-Object { [uri]::EscapeDataString($_) }) -join ","
             $response = Invoke-WebRequest -Uri "http://www.gitignore.io/api/$params"
-        }
-        catch {
+        } catch
+        {
             $applicableTypes = $list -join '|'
             $errors = `
             ($_.ErrorDetails.Message -split "`n") `
             | Select-String -Pattern "#!! ERROR: (?<typeName>$applicableTypes) is undefined" `
             | ForEach-Object { $_.Matches.Groups | Where-Object { $_.Name -eq "typeName" } | Select-Object -ExpandProperty value }
 
-            ForEach ($e in $errors) {
+            ForEach ($e in $errors)
+            {
                 Write-Error -Message "Could not find $e on gitignore.io"
             }
             return
         }
     }
-    Process {
+    Process
+    {
         $text = $Append ? "Appending" : "Creating"
-        if ((-not $Append) -and (Test-Path "./.gitignore")) {
+        if ((-not $Append) -and (Test-Path "./.gitignore"))
+        {
             Write-Warning "This command will overwrite current .gitignore. If you wish to append, use -Append when calling this cmdlet."
         }
-        if ($PSCmdlet.ShouldProcess("./.gitignore", "$text $params")) {
+        if ($PSCmdlet.ShouldProcess("./.gitignore", "$text $params"))
+        {
             $response `
             | Select-Object -ExpandProperty content `
             | Out-File  -FilePath ".\.gitignore" `
@@ -64,28 +74,34 @@ Function New-GitignoreFile {
     }
 }
 
-Function Set-LocationToGitRoot {
+Function Set-LocationToGitRoot
+{
     [CmdletBinding(SupportsShouldProcess)]
     Param()
 
     $gitRoot = Get-GitDirectory | Split-Path
 
-    if ($PSCmdlet.ShouldProcess("Current location", "Setting location to $gitRoot")){
+    if ($PSCmdlet.ShouldProcess("Current location", "Setting location to $gitRoot"))
+    {
         Set-Location $gitRoot
     }
 }
 
-Function Update-LocalSolution {
+Function Update-LocalSolution
+{
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     Param (
         [ValidatePattern(".*\.sln")]
         [string]$SolutionFile
     )
-    Begin {
-        if (-not $SolutionFile) {
+    Begin
+    {
+        if (-not $SolutionFile)
+        {
             $f = Get-ChildItem *.sln | Select-Object -First 1
             Write-Verbose "Found $f"
-            if ($null -eq $f) {
+            if ($null -eq $f)
+            {
                 Write-Error "Could not find solution file (*.sln) in $pwd"
                 return
             }
@@ -93,8 +109,10 @@ Function Update-LocalSolution {
         }
         $projectFiles = Get-ChildItem -Path ("*.fsproj", "*.csproj") -Recurse
     }
-    Process {
-        if ($PSCmdlet.ShouldProcess("$SolutionFile", "Adding $($projectFiles.count) *.(cs|fs)proj file(s)")) {
+    Process
+    {
+        if ($PSCmdlet.ShouldProcess("$SolutionFile", "Adding $($projectFiles.count) *.(cs|fs)proj file(s)"))
+        {
             $projectFiles | ForEach-Object {
                 & dotnet sln $f add $_
             }
@@ -102,7 +120,8 @@ Function Update-LocalSolution {
     }
 
 }
-Function Close-CurrentBranch {
+Function Close-CurrentBranch
+{
     [CmdletBinding()]
     param()
 
@@ -112,7 +131,8 @@ Function Close-CurrentBranch {
     & "git" "merge" "$currentBranch" "--no-ff" | Out-Null
     & "git" "branch" -d "$currentBranch" | Out-Null
 }
-Function Resolve-RelativeTo {
+Function Resolve-RelativeTo
+{
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory)]
@@ -129,7 +149,8 @@ Function Resolve-RelativeTo {
     Pop-Location
 }
 
-Function Get-ExpandedProperty {
+Function Get-ExpandedProperty
+{
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory, ValueFromPipeline)]
@@ -137,17 +158,20 @@ Function Get-ExpandedProperty {
         [Parameter(Mandatory)]
         [String] $Property
     )
-    Process {
+    Process
+    {
         $InputObject | Select-Object -ExpandProperty $Property
     }
 }
 
-Function Copy-CurrentPath {
+Function Copy-CurrentPath
+{
     $path = Get-Location | Get-ExpandedProperty -Property 'Path'
     $path | clip
 }
 
-Function New-DotnetProject {
+Function New-DotnetProject
+{
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'low')]
     Param(
         [Parameter(Mandatory)]
@@ -156,33 +180,40 @@ Function New-DotnetProject {
         [Parameter(Mandatory)]
         [string]$ProjectName
     )
-    if ($PSCmdlet.ShouldProcess("dotnet", "create $ProjectType in $pwd")) {
+    if ($PSCmdlet.ShouldProcess("dotnet", "create $ProjectType in $pwd"))
+    {
         & dotnet new $ProjectType -o $ProjectName
         & dotnet new xunit -o "tests\$ProjectName.tests"
     }
 }
 
-Function Convert-ToCleanLocation {
+Function Convert-ToCleanLocation
+{
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory, ValueFromPipeline)]
         [string] $Path
     )
-    Process {
+    Process
+    {
         $Path | Convert-Path | Set-Location
     }
 }
 
-Function Start-ElevatedSession {
+Function Start-ElevatedSession
+{
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     param()
-    begin {
+    begin
+    {
         $targetPath = Get-Location
         $targetProfile = Join-Path -Path $PSScriptRoot -ChildPath "adminProfile.ps1"
     }
-    process {
+    process
+    {
         Write-Verbose "Targeting location: $targetPath"
-        if (-not $PSCmdlet.ShouldProcess("Elevated terminal", "Starting")) {
+        if (-not $PSCmdlet.ShouldProcess("Elevated terminal", "Starting"))
+        {
             return;
         }
         Start-Process pwsh `
@@ -198,14 +229,16 @@ Function Start-ElevatedSession {
     }
 }
 
-Function Get-DotnetProject {
+Function Get-DotnetProject
+{
     [CmdletBinding()]
     param()
     $content = & dotnet new --list
     $headers = $content[0] -split '\s\s+'
     $content | Select-Object -Skip 2 | Select-Object -SkipLast 1 | ForEach-Object {
         $values = $_ -split '\s\s+' | Where-Object { $_ -ne "" }
-        if ($values.Count -eq 3) {
+        if ($values.Count -eq 3)
+        {
             $values += $values[2]
             $values[2] = ""
         }
@@ -220,19 +253,22 @@ Function Get-DotnetProject {
         };
     }
 }
-Function Update-ExtensionsModule {
+Function Update-ExtensionsModule
+{
     [CmdletBinding(
         SupportsShouldProcess,
         ConfirmImpact = 'Low'
     )]
     Param()
-    If ($PSCmdlet.ShouldProcess("Extensions module", "Reload")) {
+    If ($PSCmdlet.ShouldProcess("Extensions module", "Reload"))
+    {
         $path = Join-Path -Path $PSScriptRoot -ChildPath "PSExtensions.psm1"
         Import-Module -Name $path -Force -Verbose:$VerbosePreference
     }
 }
 
-Function Set-EnvironmentVariable {
+Function Set-EnvironmentVariable
+{
     [CmdletBinding(
         SupportsShouldProcess,
         ConfirmImpact = 'High'
@@ -246,26 +282,33 @@ Function Set-EnvironmentVariable {
         [ValidateSet("Machine", "User")]
         [String] $Target
     )
-    Begin {
-        Switch ($Target) {
-            "Machine" {
+    Begin
+    {
+        Switch ($Target)
+        {
+            "Machine"
+            {
                 $EnvTarget = [System.EnvironmentVariableTarget]::Machine
                 Break
             }
-            Default {
+            Default
+            {
                 $EnvTarget = [System.EnvironmentVariableTarget]::User
                 Break
             }
         }
     }
-    Process {
-        if ($PSCmdlet.ShouldProcess($Variable, "Setting value $($Value) on target $($EnvTarget)")) {
+    Process
+    {
+        if ($PSCmdlet.ShouldProcess($Variable, "Setting value $($Value) on target $($EnvTarget)"))
+        {
             [System.Environment]::SetEnvironmentVariable($Variable, $Value, $EnvTarget)
         }
     }
 }
 
-Function Remove-EnvironmentVariable {
+Function Remove-EnvironmentVariable
+{
     [CmdletBinding(
         SupportsShouldProcess,
         ConfirmImpact = 'High'
@@ -277,26 +320,33 @@ Function Remove-EnvironmentVariable {
         [ValidateSet("Machine", "User")]
         [String] $Target
     )
-    Begin {
-        Switch ($Target) {
-            "Machine" {
+    Begin
+    {
+        Switch ($Target)
+        {
+            "Machine"
+            {
                 $EnvTarget = [System.EnvironmentVariableTarget]::Machine
                 Break
             }
-            Default {
+            Default
+            {
                 $EnvTarget = [System.EnvironmentVariableTarget]::User
                 Break
             }
         }
     }
-    Process {
-        if ($PSCmdlet.ShouldProcess($Variable, "Removing variable for target $($EnvTarget)")) {
+    Process
+    {
+        if ($PSCmdlet.ShouldProcess($Variable, "Removing variable for target $($EnvTarget)"))
+        {
             [System.Environment]::SetEnvironmentVariable($Variable, "", $EnvTarget)
         }
     }
 }
 
-Function Invoke-OhMyPosh {
+Function Invoke-OhMyPosh
+{
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingInvokeExpression', '')]
     [CmdletBinding()]
     param(
@@ -305,7 +355,8 @@ Function Invoke-OhMyPosh {
     oh-my-posh init pwsh --config $Path | Invoke-Expression
 }
 
-Function Resolve-ProjectRoot {
+Function Resolve-ProjectRoot
+{
     [CmdletBinding()]
     param(
         [Parameter()]
@@ -313,33 +364,40 @@ Function Resolve-ProjectRoot {
         [Parameter()]
         [switch]$Project
     )
-    if($null -eq $Path){
+    if($null -eq $Path)
+    {
         $Path = Get-Location
     }
-    Do {
+    Do
+    {
         Write-Debug "Searching in $Path"
         $proj = Get-ChildItem -Path $Path -Filter "*.csproj"
         Write-Debug "Found project file: $proj"
-        if(-not $Project){
+        if(-not $Project)
+        {
             $sln = Get-ChildItem -Path $Path -Filter "*.sln"
             Write-Debug "Found solution file: $sln"
         }
 
-        If($Project){
-            If($null -ne $proj) {
+        If($Project)
+        {
+            If($null -ne $proj)
+            {
                 Write-Debug "Returning project file: $proj"
                 return $proj
             }
         }
         
-        If($null -ne $sln) {
+        If($null -ne $sln)
+        {
             break;
         }
 
         $Path = $Path | Split-path
     } While("" -ne $Path)
 
-    If($null -eq $sln){
+    If($null -eq $sln)
+    {
         Write-Debug "Returning project file: $proj"
         return $proj
     }
@@ -347,7 +405,8 @@ Function Resolve-ProjectRoot {
     return $sln
 }
 
-Function Set-LocationToProjectRoot {
+Function Set-LocationToProjectRoot
+{
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     param(
         [Parameter()]
@@ -355,12 +414,14 @@ Function Set-LocationToProjectRoot {
     )
 
     $path = Resolve-ProjectRoot -Project $Project
-    if ($PSCmdlet.ShouldProcess("$path", "Set location")) {
+    if ($PSCmdlet.ShouldProcess("$path", "Set location"))
+    {
         Convert-ToCleanLocation $path
     }
 }
 
-Function Start-GoogleQuery {
+Function Start-GoogleQuery
+{
     [CmdletBinding(
         SupportsShouldProcess,
         ConfirmImpact = 'Low'
@@ -369,19 +430,22 @@ Function Start-GoogleQuery {
         [Parameter(Mandatory, Position=0)]
         [String] $Query
     )
-    if ($PSCmdlet.ShouldProcess($Query, "Searching google for query")){
+    if ($PSCmdlet.ShouldProcess($Query, "Searching google for query"))
+    {
         Start-Process "https://google.com/search?q=$Query"
     }
 }
 
-Function Get-EdgeSecret {
+Function Get-EdgeSecret
+{
     [CmdletBinding()]
     [OutputType([HashTable])]
     Param(
         [Parameter(Mandatory, ValueFromPipeline)]
         [Microsoft.PowerShell.SecretManagement.SecretInformation]$Info
     )
-    Process{
+    Process
+    {
         $plainTextPwd = Get-Secret $Info -AsPlainText
         return @{
             $Name = $Info.Metadata.UserName
@@ -390,32 +454,13 @@ Function Get-EdgeSecret {
     }
 }
 
-Function Invoke-ZLocationNvim { # needs a way better name
+Function Enable-Zoxide
+{
     [CmdletBinding()]
-    Param(
-        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
-        [string] $Path
-    )
-    $z = Get-ZLocation $Path
-    if($null -eq $z) { 
-        Write-Error "Couldn't resolve path $Path"
-        return
-    }
+    param()
 
-    $target = $z | 
-        ForEach-Object {$_.GetEnumerator()} |
-        ForEach-Object {[PSCustomObject]@{Weight = $_.Value; Path = $_.Name}} |
-        Sort-Object -Property "Weight" -Descending:$true |
-        Select-Object -First 1 -ExpandProperty Path
-
-    Set-ZLocation $target
-    & nvim
+    Invoke-Expression (& { (zoxide init powershell --cmd cd | Out-String) })
 }
-
-Function Enable-Zoxide {
-        [CmdletBinding()]
-
-    }
 
 Set-Alias -Name gig         -Value New-GitignoreFile
 Set-Alias -Name lgi         -Value Get-GitignoreType
@@ -430,7 +475,6 @@ Set-Alias -Name env         -Value Set-EnvironmentVariable
 Set-Alias -Name gr          -Value Set-LocationToGitRoot
 Set-Alias -Name q?          -Value Start-GoogleQuery
 Set-Alias -Name google      -Value Start-GoogleQuery
-Set-Alias -Name zn          -Value Invoke-ZLocationNvim
 
 
 Remove-Alias -Name sl -Force -ErrorAction SilentlyContinue

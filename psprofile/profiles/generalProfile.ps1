@@ -34,3 +34,4 @@ $Env:MSBUILDTERMINALLOGGER = $true
 $Env:DOTFILES = "c:\Users\nagla\.dotfiles\"
 $Env:TERM = "xterm-256color"
 
+Enable-Zoxide

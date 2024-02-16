@@ -6,3 +6,5 @@ Set-Profile -BuiltinTheme "catppuccin_frappe"
 
 if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
 else { Set-PSReadLineOption -ViModeIndicator Prompt }
+
+Enable-Zoxide
