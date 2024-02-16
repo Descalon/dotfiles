@@ -32,4 +32,5 @@ $Env:PATH = @(
 
 $Env:MSBUILDTERMINALLOGGER = $true
 $Env:DOTFILES = "c:\Users\nagla\.dotfiles\"
-$Env:TERM = "xterm-x256color"
+$Env:TERM = "xterm-256color"
+
