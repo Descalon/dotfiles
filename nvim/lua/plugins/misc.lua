@@ -2,6 +2,16 @@ if vim.g.vscode then return {} end
 
 return {
   {
+    'sathishmanohar/quick-buffer-jump',
+    config = function ()
+      require('quick_buffer_jump').setup{
+        ergonomic_alphabet = true
+      }
+      vim.keymap.set("n", "<leader>pu", [[:QuickBufferJump<CR>]], { silent = true })
+    end
+
+  },
+  {
     "mbbill/undotree",
     config = function()
       vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
