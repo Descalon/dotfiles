@@ -40,6 +40,7 @@ else
     require("lazy").setup("plugins")
     vim.cmd[[colorscheme catppuccin-frappe]]
     require("nvim.mappings")
+    require("nvim.windows") -- Or do I merge this with the mappings?
     require("lspsetup")
 end
 
