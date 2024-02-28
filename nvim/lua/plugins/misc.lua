@@ -12,6 +12,14 @@ return {
 
   },
   {
+    "xiyaowong/transparent.nvim",
+    event = "UIEnter"
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  },
+  {
     "mbbill/undotree",
     config = function()
       vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -31,6 +39,15 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
+    config = function()
+      require("catppuccin").setup{
+        color_overrides = {
+          frappe = {
+            surface1 = "#eebebe",
+          },
+        }
+      }
+    end
   },
   {
     "neovim/nvim-lspconfig",

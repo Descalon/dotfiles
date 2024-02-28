@@ -28,6 +28,7 @@ $Env:PATH = @(
     "C:\Users\nagla\AppData\Local\Microsoft\WindowsApps"
     "C:\Users\nagla\tools\kotlinc\bin"
     "C:\Users\nagla\AppData\Local\Microsoft\WinGet\Links"
+    "C:\tools\neovim\nvim-win64\bin\"
 ) -join ";"
 
 $Env:MSBUILDTERMINALLOGGER = $true
