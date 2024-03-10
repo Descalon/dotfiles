@@ -13,9 +13,6 @@ local quitfn = function()
       or string.find(bufname, ".*%.git.COMMIT_EDITMSG$")
   then
     cmd('wq')
-  elseif vim.bo.filetype == 'norg' then
-    cmd('wa')
-    cmd('Neorg return')
   else
     cmd('wa')
     cmd('qa') -- workaroud for `wqa`, which fails when a terminal window is open. (probably fails if any buftype~='' is open)

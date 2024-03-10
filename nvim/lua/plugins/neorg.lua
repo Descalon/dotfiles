@@ -6,6 +6,7 @@ return {
     { "nvim-neorg/neorg-telescope" },
   },
   config = function()
+    vim.g.maplocalleader = ","
     local n = require "neorg"
     n.setup {
       load = {
