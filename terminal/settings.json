@@ -27,6 +27,10 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": "togglePaneZoom",
+            "keys": "alt+plus"
         }
     ],
     "copyFormatting": "none",
